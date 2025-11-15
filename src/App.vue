@@ -2,7 +2,7 @@
 <div>
   <h1>elTable大数据加载优化</h1>
 
-  <el-table v-my-scroll height="300" :data="tableData.slice(start,over)">
+  <el-table v-my-scroll height="300" :data="tableData.slice(start,over)" :cell-style="{padding: '0'}" :header-cell-style="{padding: '0'}">
     <el-table-column prop="date" label="Date"  />
     <el-table-column prop="name" label="Name"  />
     <el-table-column prop="address" label="Address" />
@@ -42,7 +42,7 @@
 .el-table__row {
   height: 40px;
 }
-.el-table__row {
+.el-table .el-table__cell {
   padding: 0;
 }
 </style>

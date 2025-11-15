@@ -15,13 +15,19 @@ Vue.directive('my-scroll', {
     let target = el.querySelector('.el-table__body-wrapper')
     target.addEventListener('scroll', () => {
       // 防抖
-      setTimeout(() => {
+      // setTimeout(() => {
         const _table = target.querySelector('table')
         _table.style.paddingTop = self.padding[0] + 'px'
-        _table.style.paddingBottom = self.padding[1] + 50 + 'px'
+        _table.style.paddingBottom = self.padding[1] + 'px'
+        console.log(self.padding);
+        
         self.tableHeight = target.clientHeight
         self.scrollTop = target.scrollTop
-      }, 200);
+        console.log(self.tableHeight, self.scrollTop);
+        
+        console.log(self.start, self.over, self.padding);
+        
+      // }, 200);
     })
   }
 })
@@ -35,13 +41,13 @@ Vue.mixin({
   },
   computed: {
     start() {
-      return Math.max(this.scrollTop / 40 - 10, 0)
+      return Math.max(this.scrollTop / 40 - 5, 0)
     },
     over() {
-      return Math.min((this.scrollTop + this.tableHeight) / 40 + 10, this.tableData.length)
+      return Math.min((this.scrollTop + this.tableHeight) / 40 + 5, this.tableData.length)
     },
     padding() {
-      let paddingBottom = (this.tableData - this.over) * 40
+      let paddingBottom = (this.tableData.length - this.over) * 40
       let paddingTop = this.start * 40
       return [paddingTop, paddingBottom]
     }
